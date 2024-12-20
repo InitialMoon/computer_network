@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <time.h>
-#include <sys/types.h> // 定以了系统编程中用到的一些数据类型
+#include <sys/types.h> // define some data type used in system program e.g. pid_t
 #include <my_daemon.h>
 
 void parent_task() {
     while(1) {
         pid_t pid = getpid();
         pid_t ppid = getppid();
-        printf("%d+%d+1120213081+main\n", pid, ppid);
+        printf("%d+%d+1120213039+main\n", pid, ppid);
         sleep(5);
     }
 }
@@ -17,7 +17,7 @@ void child_task() {
     for (int i = 0; i < 3; i++) {
         pid_t pid = getpid();
         pid_t ppid = getppid();
-        printf("%d+%d+1120213081+sub\n", pid, ppid);
+        printf("%d+%d+1120213039+sub\n", pid, ppid);
         sleep(25);
     }
 }
