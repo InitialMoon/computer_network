@@ -6,16 +6,20 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
+char output_path[] = "./output.txt";
+
 void redirect() {
+    
     // 将标准输出重定向到 output.txt 文件（追加模式）
-    FILE *file = freopen("output.txt", "a", stdout);
+    FILE *file = freopen(output_path, "a", stdout);
     if (file == NULL) {
         perror("Error opening output file");
         exit(1);
     }
 
     // 将标准错误输出重定向到同一个文件
-    file = freopen("output.txt", "a", stderr);
+    // file = freopen("output.txt", "a", stderr);
+    file = freopen(output_path, "a", stderr);
     if (file == NULL) {
         perror("Error opening error file");
         exit(1);
@@ -52,7 +56,7 @@ void my_daemon() {
     umask(0);
 
     // 改变工作目录，防止守护进程占用目录
-    if (chdir("/") < 0) {
+    if (chdir(".") < 0) {
         perror("chdir failed");
         exit(1);
     }

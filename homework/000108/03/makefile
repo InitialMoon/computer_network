@@ -15,6 +15,13 @@ OBJ2		= $(OBJ_DIR)/test3-2.o
 TARGET1		= $(BIN_DIR)/test3-1
 TARGET2		= $(BIN_DIR)/test3-2
 
+# 通过 DEBUG 环境变量来切换调试模式
+ifeq ($(DEBUG), 1)
+  CFLAGS += -g -DDEBUG # 加入调试信息和定义 DEBUG 宏
+else
+  CFLAGS += -O2 # 默认优化选项
+endif
+
 all: $(TARGET1) $(TARGET2)
 
 $(TARGET1): $(OBJ1) | $(BIN_DIR)  # 依赖于 obj 和 bin 目录
